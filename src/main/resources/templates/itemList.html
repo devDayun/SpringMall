@@ -1,0 +1,54 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Spring Boot와 JPA로 만들어보기</title>
+    <link href="/styles/style.css" rel="stylesheet"> <!-- 경로를 / 부터 시작하면 static 폴더 파일들 사용 가능 -->
+    <link href="/styles/nav.css" rel="stylesheet">
+
+<body>
+<div th:replace="~{ nav.html::navbar }"></div> <!-- 타임리프 템플릿 조각 사용, 변경에 용이하다-->
+
+    <div class="card" th:each="item : ${items}" >
+    <img src="https://placehold.co/300">
+
+        <div>
+            <a th:href="@{/items/{id}(id=${item.id})}">
+            <h4 th:text="${item.itemName}"></h4>
+            </a>
+            <p th:text="${item.itemPrice}"></p>
+            <button th:onclick="|location.href='@{/edit/{id}(id=${item.id})}'|">상품 수정</button>
+            <button th:onclick="fetch('/delete?id=[[${item.id}]]', { method : 'DELETE'})
+                    .then(r => r.text())
+                    .then(() => {
+                        location.reload();
+                    })">상품 삭제</button>
+        </div>
+
+    </div>
+
+    <div>
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+                <li class="page-item" th:classappend="${pages == 0 ? 'disabled' : ''}">
+                    <a class="page-link" th:href="@{/list/{pageNumber}(pageNumber=0)}"> 첫 페이지 </a>
+                </li>
+                <li class="page-item" th:classappend="${pages == 0 ? 'disabled' : ''}">
+                    <a class="page-link" th:href="@{/list/{pageNumber}(pageNumber=${pages - 1})}"> 이전 페이지 </a>
+                </li>
+                <li class="page-item" th:each="i : ${#numbers.sequence(0, pages.totalPages - 1)}"
+                    th:classappend="${pages == i ? 'active' : ''}">
+                    <a class="page-link" th:href="@{/list/{pageNumber}(pageNumber=${i})}" th:text="${i + 1}"></a>
+                </li>
+                <li class="page-item" th:classappend="${pages == pages.totalPages - 1 ? 'disabled' : ''}">
+                    <a class="page-link" th:href="@{/list/{pageNumber}(pageNumber=${pages + 1})}"> 다음 페이지 </a>
+                </li>
+                <li class="page-item" th:classappend="${pages == pages.totalPages - 1 ? 'disabled' : ''}">
+                    <a class="page-link" th:href="@{/list/{pageNumber}(pageNumber=${pages.totalPages - 1})}"> 마지막 페이지 </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+</body>
+</html>

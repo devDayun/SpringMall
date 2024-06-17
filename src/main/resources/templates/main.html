@@ -1,0 +1,39 @@
+<!doctype html><!-- !쓰고 tab 키 누르면 기본 HTML 템플릿이 만들어짐 -->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <title>Spring Boot와 JPA로 만들어보기</title><!-- 브라우저의 탭에 표시 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.min.css">
+  <link rel="stylesheet" href="/styles/style.css">
+  <link rel="stylesheet" href="/styles/nav.css">
+  <link rel="stylesheet" href="/styles/carousel.css">
+</head>
+<body>
+  <div th:replace="~{ nav.html::navbar }"></div> <!-- 타임리프 템플릿 조각 사용, 변경에 용이하다-->
+
+  <div class="slideshow-container"><!-- 캐러셀 구현 https://www.youtube.com/watch?v=DpHi9Ruu8R4 -->
+    <div class="mySlides fade">
+      <img src="images/carousel1.png" style="width: 100%">
+    </div>
+    <div class="mySlides fade">
+      <img src="images/carousel2.png" style="width: 100%">
+    </div>
+    <div class="mySlides fade">
+      <img src="images/carousel3.png" style="width: 100%">
+    </div>
+
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+  </div>
+  <br>
+  <div style="text-align: center">
+    <span class="dot" onclick="currentSlides(1)"></span>
+    <span class="dot" onclick="currentSlides(2)"></span>
+    <span class="dot" onclick="currentSlides(3)"></span>
+  </div>
+
+<script src="/carouselScript.js"></script>
+
+</body>
+</html>

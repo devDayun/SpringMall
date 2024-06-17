@@ -1,0 +1,20 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Spring Boot와 JPA로 만들어보기</title>
+    <link href="/styles/style.css" rel="stylesheet"> <!-- 경로를 / 부터 시작하면 static 폴더 파일들 사용 가능 -->
+    <link href="/styles/nav.css" rel="stylesheet">
+</head>
+
+<body>
+<div th:replace="~{ nav.html::navbar }"></div>
+
+<form action="/add" method="post"> <!-- 값 전송하는 태그 method="post" 방식으로 전달 -->
+    <input name="itemName" placeholder="상품 이름을 입력하세요">
+    <input name="itemPrice" placeholder="상품 가격을 입력하세요">
+    <button type="submit">상품 등록</button>
+</form>
+
+</body>
+</html>

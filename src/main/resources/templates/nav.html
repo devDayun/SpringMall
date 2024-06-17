@@ -1,0 +1,36 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<body>
+<nav th:fragment="navbar">
+    <div class="nav-logo">
+        <a href="">
+            <img src="images/spring MALL.png">
+        </a>
+    </div>
+
+    <!-- sec:authorize="isAnonymous()" : 로그인하지 않은 상태일 때 -->
+    <th:block sec:authorize="isAnonymous()">
+    <ul class="nav-links">
+        <li class="link"><a href="/login">로그인</a></li>
+        <li class="link"><a href="/register">회원가입</a></li>
+    </ul>
+    </th:block>
+
+    <!-- sec:authorize="isAuthenticated()" : 로그인한 상태일 때 -->
+    <th:block sec:authorize="isAuthenticated()">
+    <ul class="nav-links">
+        <li class="link"><a href="#">홈</a></li>
+        <li class="link"><a href="/list">상품 목록</a></li>
+        <li class="link"><a href="/add">상품 등록</a></li>
+        <li class="link"><a href="/notice">공지 사항</a></li>
+    </ul>
+    <!--인증시 사용된 객체의 Username (ID)-->
+    회원 아이디: <div sec:authentication="name"></div>
+    <a href="/logout">로그아웃</a>
+    </th:block>
+</nav>
+
+</body>
+
+</html>

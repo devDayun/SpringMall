@@ -1,0 +1,39 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Spring Boot와 JPA로 만들어보기</title>
+    <link href="/styles/style.css" rel="stylesheet"> <!-- 경로를 / 부터 시작하면 static 폴더 파일들 사용 가능 -->
+    <link href="/styles/nav.css" rel="stylesheet">
+</head>
+
+<body>
+<div th:replace="~{ nav.html::navbar }"></div> <!-- 타임리프 템플릿 조각 사용, 변경에 용이하다-->
+
+<div class="detail">
+    <h4>상세페이지</h4>
+    <img src="https://placehold.co/300">
+    <h4 th:text="${items.itemName}"></h4>
+    <p th:text="${items.itemPrice + '원'}"></p>
+
+    <!--<button th:onclick="|location.href='@{/delete/{id}(id=${item.id})}'|">상품 삭제</button>
+    단순하고, 검증처리 하지 않은 방법, AJAX로 구현한다면?-->
+    <!-- UI 만드는 Step
+    1. HTML/CSS 로 미리 디자인
+    2. 필요할 때 보여달라고 JS로 코드 짜기 -->
+
+</div>
+
+<script>
+    // html 페이지의 class="btn" 찾아서 그 중에 0번쨰 버튼 클릭시 코드 실행
+    // document.querySelectorAll('.btn')[0].addEventListener('click', function () {
+    //     fetch('/test1',{
+    //         method : 'POST',
+    //         headers : {'Content-Type' : 'application/json'},
+    //         body : JSON.stringify({name : 'kim'})
+    //     }) // 이 URL로 GET 요청을 날려줌
+    // })
+</script>
+</body>
+
+</html>
